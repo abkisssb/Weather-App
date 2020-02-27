@@ -1,0 +1,66 @@
+body{
+
+    background-image: url('Img/1.jpg');  
+    background-repeat: no-repeat;
+    background-size: cover;
+    
+  
+}
+
+input[type=text] {
+  border: none;
+  border-bottom: 2px solid red;
+  padding: 20px;
+  margin: 10px;
+  border-radius: 6px;
+  font-size: 20px;
+  
+}
+
+.App {
+  text-align: center;
+  margin-top: 50px;
+}
+
+button{
+  border: none;
+  border-right: 2px solid red;
+   padding: 20px;
+   margin: 40px;
+   border-radius: 6px;
+   font-size: 20px;
+   cursor: pointer;
+}
+ button:hover{
+   background-color: skyblue;
+
+ }
+.App-footer {
+  background-color: #282c34;
+  min-height: 30vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+
+}
+.city-footer{
+   color: violet;
+}
+.country-footer{
+  color: orange;
+}
+.desc-footer{
+  color: forestgreen;
+}
+.p{
+  margin: 1px;
+}
+
+.displayWeather{
+    font-size: 30px;
+    color: rgb(1, 21, 27);
+    margin: 0px;
+}
