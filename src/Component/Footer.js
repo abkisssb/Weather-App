@@ -1,10 +1,11 @@
 import React from 'react';
 
 
-function Header(props){
+function Footer(props){
     return(
 
         <div className='App-footer'>
+         <footer className='footer'>
             {props.city && props.country &&
             <p>You have just seearch for weather in <span className='city-footer'> {props.city} </span>,
              <span className='country-footer'> {props.country}</span></p>}
@@ -12,7 +13,7 @@ function Header(props){
             {props.description && 
             <p>and current condition is a  <span className='desc-footer'> {props.description} </span> <br></br> <br></br>
              Remember to stay safe out there, Thank you! </p>}
-             
+             </footer>
            
            
         </div>
@@ -20,4 +21,4 @@ function Header(props){
 }
 
 
-export default Header;
+export default Footer;

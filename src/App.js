@@ -1,8 +1,16 @@
 import React from 'react';
 import './App.css';
 import WeatherForm from './Component/WeatherForm';
-import DisplayWeather from './Component/DisplayWeather';
-import Header from './Component/Header';
+import OtherWeather from './Component/OtherWeather';
+import Temperature from './Component/Temperature';
+import Locations from './Component/Locations';
+import FeelsLike from './Component/FeelsLike';
+import MinMax from './Component/MinMax';
+import Condition from './Component/Condition';
+import Footer from './Component/Footer';
+import Datas from './Component/Datas';
+
+
 
 const KEY ="557c377d903b3be447598a9442a1cbd0"
 
@@ -30,16 +38,29 @@ class App extends React.Component {
     console.log(weather);
       this.setState({
 
-      temp:weather.list[0].main.temp,
-        feels_like:weather.list[0].main.feels_like,
-         humidity:weather.list[0].main.humidity,
-      temp_min:weather.list[0].main.temp_min,
-      temp_max:weather.list[0].main.temp_max,
+      temp:weather.list[0].main.temp.toFixed(0),
+        feels_like:weather.list[0].main.feels_like.toFixed(0),
+         humidity:weather.list[0].main.humidity.toFixed(0),
+      temp_min:weather.list[0].main.temp_min.toFixed(0),
+      temp_max:weather.list[0].main.temp_max.toFixed(0),
         country:weather.list[0].sys.country,
         city:weather.list[0].name,
          description:weather.list[0].weather[0].description
       })
+      
+ }
 
+     dataData = (x) => {
+  let months = ['January','February','March','April',
+                'May','June','July','August','September',
+                'October','November','December'];
+    let days =['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday','Friday', 'Saturday'];
+    let day= days[x.getDay()];
+    let date = x.getDate();
+    let month=months[x.getMonth()];
+    let year = x.getFullYear();
+
+     return `${day} ${date} ${month} ${year}`
  }
 
 
@@ -48,22 +69,23 @@ class App extends React.Component {
       <div className="App">
       
        <WeatherForm callWeather={this.callWeather} />
+       <Locations  country={this.state.country}city={this.state.city}/>
+       <Datas dataData={this.dataData(new Date())} />
+        <Temperature  temp={this.state.temp} />
+        <FeelsLike  feels_like={this.state.feels_like} />
+        <MinMax    temp_min={this.state.temp_min}
+        temp_max={this.state.temp_max}/>
+        <Condition description={this.state.description} />
        
-       <DisplayWeather
-        temp={this.state.temp}
-        //feels_like={this.state.feels_like}
+       <OtherWeather
+       
         humidity={this.state.humidity}
-        temp_min={this.state.temp_min}
-        temp_max={this.state.temp_max}
-         country={this.state.country}
-         city={this.state.city}
          description={this.state.description}/>
-         <Header city={this.state.city}
+         <Footer city={this.state.city}
          country={this.state.country}
-         description={this.state.description}/>
+         />
           
-
-        
+      
 
       </div>
     );
