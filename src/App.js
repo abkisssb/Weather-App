@@ -9,6 +9,9 @@ import MinMax from './Component/MinMax';
 import Condition from './Component/Condition';
 import Footer from './Component/Footer';
 import Datas from './Component/Datas';
+import Welcome from './Component/Welcome';
+import ErrorMsg from './Component/ErrorMsg';
+
 
 
 
@@ -35,18 +38,34 @@ class App extends React.Component {
     const country=e.target.elements.country.value;
     const call_api = await fetch(`https://api.openweathermap.org/data/2.5/find?q=${city},${country}&units=metric&appid=${KEY}`);
     const weather = await call_api.json();
-    console.log(weather);
-      this.setState({
 
-      temp:weather.list[0].main.temp.toFixed(0),
-        feels_like:weather.list[0].main.feels_like.toFixed(0),
-         humidity:weather.list[0].main.humidity.toFixed(0),
-      temp_min:weather.list[0].main.temp_min.toFixed(0),
-      temp_max:weather.list[0].main.temp_max.toFixed(0),
-        country:weather.list[0].sys.country,
-        city:weather.list[0].name,
-         description:weather.list[0].weather[0].description
-      })
+      if(city || country){
+        console.log(weather);
+        this.setState({
+           temp:Math.round(weather.list[0].main.temp),
+          feels_like:Math.round(weather.list[0].main.feels_like),
+           humidity:Math.round(weather.list[0].main.humidity),
+          temp_min:Math.round(weather.list[0].main.temp_min),
+          temp_max:Math.round(weather.list[0].main.temp_max),
+           country:weather.list[0].sys.country,
+           city:weather.list[0].name,
+           description:weather.list[0].weather[0].description,
+           error : ''
+        })
+      } else{
+        this.setState({
+          temp:'',
+          feels_like:'',
+          humidity:'',
+          temp_min:'',
+          temp_max:'',
+          country:'',
+          city:'',
+          description:'',
+          error: 'Please Enter City or Country '
+       })
+      }
+    
       
  }
 
@@ -66,11 +85,19 @@ class App extends React.Component {
 
   render(){
     return (
-      <div className="App">
-      
+      <div className={(this.state.weather !=='')
+      ?((this.state.temp>16)
+      ? 'app warm':'app')
+      :'app '}>
+         <main>
+
+        <ErrorMsg error={this.state.error} />
+
        <WeatherForm callWeather={this.callWeather} />
+     
        <Locations  country={this.state.country}city={this.state.city}/>
        <Datas dataData={this.dataData(new Date())} />
+    
         <Temperature  temp={this.state.temp} />
         <FeelsLike  feels_like={this.state.feels_like} />
         <MinMax    temp_min={this.state.temp_min}
@@ -82,11 +109,12 @@ class App extends React.Component {
         humidity={this.state.humidity}
          description={this.state.description}/>
          <Footer city={this.state.city}
-         country={this.state.country}
+         country={this.state.country} 
+         
          />
           
-      
-
+         <Welcome />
+         </main>
       </div>
     );
   }

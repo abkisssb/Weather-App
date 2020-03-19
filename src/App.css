@@ -1,26 +1,44 @@
-body{
 
-    background-image: url('Img/1.jpg');  
-    background-repeat: no-repeat;
-    background-size: cover;
-    
-  
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+ 
 }
 
+a{
+   text-decoration: none;
+   color:#fff;
+     font-size: 30px;
+     font-weight: 400;
+}
 input[type=text] {
   border: none;
   border-bottom: 2px solid red;
   padding: 20px;
   margin: 10px;
   border-radius: 6px;
-  font-size: 20px;
+  font-size: 23px;
   
 }
-
-.App {
+.app{
+  background-image: url('./Img/bright.jpg');
+  background-size: cover;
+  background-position: bottom;
+  transition: 0.4 ease;
   text-align: center;
-  margin-top: 50px;
+  margin-top: 0px;
 }
+.app.warm{
+  background-image: url('./Img/warm.jpg');
+
+}
+main{
+  min-height: 100vh;
+  background-image: linear-gradient(to bottom, rgba(0,0,0, 0.1),rgba(0,0,0, 0.75));
+  padding: 25px;
+}
+
 
 button{
   border: none;
@@ -35,26 +53,47 @@ button{
    background-color: skyblue;
 
  }
-.App-footer .footer {
+.app-footer .footer {
  
-  min-height: 26vh;
+  /* min-height: 26vh; */
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  font-weight: 900px;
   
 
 }
 .city-footer{
-   color: violet;
+  font-size: 30px;
+  font-style: italic;
+  font-weight: 600;
+  color:   rgb(135, 184, 224);
+  text-align: center;
+  text-shadow: 1px 1px rgba(39, 39, 88, 0.5);
+   padding: 5px;
+
 }
 .country-footer{
-  color: orange;
+  font-size:30px;
+  font-style: italic;
+  font-weight: 600;
+  color:   rgb(138, 195, 241);
+  text-align: center;
+  text-shadow: 1px 1px rgba(9, 9, 19, 0.5);
+   padding: 10px;
+  
 }
 .desc-footer{
-  color: forestgreen;
+  font-size: 24px;
+  font-style: italic;
+  font-weight: 600;
+  color:   rgb(6, 45, 77);
+  text-align: center;
+  text-shadow: 1px 1px rgba(9, 9, 19, 0.5);
+   padding: 10px;
 }
 .p{
   margin: 1px;
@@ -66,7 +105,7 @@ button{
     margin: 30px auto;
     position: relative;
     display: inline-block;
-    background-color: rgb(255, 255, 255,0.2);
+    background-color: rgb(255, 255, 255,0.4);
     border-radius: 16px;
     padding: 20px 105px;
     color:purple;
@@ -74,7 +113,8 @@ button{
     font-weight: 600;
     text-shadow: 3px 6px rgba(90, 50, 70, 0.5);
     text-align: center;
-    box-shadow: 3px 6px rgb(0, 0, 0, 0.2);
+    box-shadow: 3px 6px rgb(0, 0, 0, 0.3);
+ 
 
 
 }
@@ -84,7 +124,7 @@ button{
 
 .displayFeelsLike .feel{
   color: rgb(1, 21, 27);
-  margin: 30px auto;
+  margin: 10px auto;
   position: relative;
   display: inline-block;
   background-color: rgb(255, 255, 255,0.6);
@@ -155,11 +195,12 @@ button{
 }
 .displayDate .date{
   font-size: 24px;
+  font-style: italic;
   font-weight: 600;
-  color: rgba(209, 196, 10, 0.411);
+  color:   rgb(154, 212, 226);
   text-align: center;
-  text-shadow: 1px 1px rgba(50, 50, 70, 0.5);
-   padding: 10px;
+  text-shadow: 1px 1px rgba(9, 9, 19, 0.5);
+   padding: 75px;
    
 }
 /* .displayOtherWeather{
@@ -178,3 +219,64 @@ button{
   text-align: center;
   box-shadow: 3px 6px rgb(0, 0, 0, 0.2);
 } */
+
+
+
+
+
+.all {
+  display:inline-block;
+  overflow:hidden;
+  white-space:nowrap;
+  
+}
+
+.all:first-of-type {   
+  animation: showup 7s infinite;
+  font-size: 40px;
+  color: rgb(123, 175, 218);
+  margin: 0;
+  font-size: 80px;
+  font-weight: 500;
+    
+    
+}
+
+.all:last-of-type {
+  width:50px;
+  animation: reveal 7s infinite;
+  color:rgb(197, 220, 236);
+ 
+
+}
+
+.all:last-of-type span {
+  margin-left:-355px;
+  animation: slidein 7s infinite;
+  font-size: 30px;
+
+}
+
+@keyframes showup {
+    10% {opacity:1;}
+    20% {opacity:1;}
+    80% {opacity:1;}
+    100% {opacity:0;}
+}
+
+@keyframes slidein {
+    10% { margin-left:-800px; }
+    20% { margin-left:-800px; }
+    35% { margin-left:90px; }
+    100% { margin-left:-5px; }
+}
+
+@keyframes reveal {
+    10% {opacity:0;width:20px;}
+    20% {opacity:1;width:0px;}
+    30% {width:355px;}
+    80% {opacity:1;}
+    100% {opacity:0;width:355px;}
+}
+
+
