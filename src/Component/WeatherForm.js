@@ -6,8 +6,8 @@ function WeatherForm(props){
 
         <div>
           <form onSubmit={props.callWeather}>
-           <input type='text' name='city' placeholder='Enter City' />
-           <input type='text' name='country' placeholder='Enter Country' />
+           <input type='text' name='city'  placeholder='Enter City' />
+         
            <button>Find Weather</button>
           </form>
         </div>

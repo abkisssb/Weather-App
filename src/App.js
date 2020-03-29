@@ -14,12 +14,10 @@ import ErrorMsg from './Component/ErrorMsg';
 
 
 
-
 const KEY ="557c377d903b3be447598a9442a1cbd0"
 
 
 class App extends React.Component {
-     
      state={
          temp:'',
          feels_like:'',
@@ -28,18 +26,23 @@ class App extends React.Component {
          temp_max:'',
          country:'',
          city:'',
-         description:''
+         description:'',
+         icon:""
      }
+  
  
    callWeather = async (e) =>{
+  
 
     e.preventDefault();
     const city=e.target.elements.city.value;
-    const country=e.target.elements.country.value;
-    const call_api = await fetch(`https://api.openweathermap.org/data/2.5/find?q=${city},${country}&units=metric&appid=${KEY}`);
+    //  const country=e.target.elements.country.value;
+    const call_api = await fetch(`https://api.openweathermap.org/data/2.5/find?q=${city}&units=metric&appid=${KEY}`);
     const weather = await call_api.json();
+       
 
-      if(city || country){
+
+      if(city){
         console.log(weather);
         this.setState({
            temp:Math.round(weather.list[0].main.temp),
@@ -50,7 +53,8 @@ class App extends React.Component {
            country:weather.list[0].sys.country,
            city:weather.list[0].name,
            description:weather.list[0].weather[0].description,
-           error : ''
+           error : '',
+           icon:weather.list[0].weather[0].icon
         })
       } else{
         this.setState({
@@ -62,7 +66,8 @@ class App extends React.Component {
           country:'',
           city:'',
           description:'',
-          error: 'Please Enter City or Country '
+          error: 'Please Enter City or Country ',
+          icon:''
        })
       }
     
@@ -85,6 +90,7 @@ class App extends React.Component {
 
   render(){
     return (
+
       <div className={(this.state.weather !=='')
       ?((this.state.temp>16)
       ? 'app warm':'app')
@@ -95,10 +101,11 @@ class App extends React.Component {
 
        <WeatherForm callWeather={this.callWeather} />
      
-       <Locations  country={this.state.country}city={this.state.city}/>
+       <Locations country={this.state.country}  city={this.state.city}/>
        <Datas dataData={this.dataData(new Date())} />
     
         <Temperature  temp={this.state.temp} />
+        
         <FeelsLike  feels_like={this.state.feels_like} />
         <MinMax    temp_min={this.state.temp_min}
         temp_max={this.state.temp_max}/>

@@ -7,7 +7,7 @@ function Footer(props){
         <div className='App-footer'>
          <footer className='footer'>
             {props.city && props.country &&
-            <p> <a href="https://www.google.com/">Learn more </a><span className='city-footer'> {props.city},</span>
+            <p> <a href="https://www.google.com/" target="_">Learn more </a><span className='city-footer'> {props.city},</span>
              <span className='country-footer'> {props.country}</span></p>}
 
             {props.description && 
